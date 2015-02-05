@@ -1,2 +1,1 @@
-# MESTHackathon
-MESTHackathon
+# EdzibanPa
