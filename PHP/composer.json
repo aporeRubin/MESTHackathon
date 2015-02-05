@@ -1,0 +1,32 @@
+{
+    "require": {
+        "monolog/monolog": "1.8.*@dev",
+		"flynsarmy/slim-monolog": "dev-master",
+        "twig/twig": "1.*",
+		"slim/slim": "2.*",
+		"slim/extras": "2.*",
+		"slim/views": "0.1.*",
+        "nesbot/Carbon": "*",
+        "sybio/image-workshop": "2.0.*",
+		"illuminate/support": "4.*",
+		"illuminate/events": "4.*",
+		"illuminate/container": "4.*",
+		"illuminate/database": "4.*",
+		"codeguy/upload": "*",
+		"caseyamcl/Configula": "dev-master",
+		"oodle/krumo": "*",
+		"filp/whoops": "1.1.*@dev",
+		"zeuxisoo/slim-whoops": "dev-master",
+		"vlucas/valitron": "dev-master",
+		"aws/aws-sdk-php": "2.*",
+		"fabpot/goutte": "~2.0",
+		"gilbitron/php-simplecache": "~1.4"
+	},
+    "autoload": {
+        "psr-0": {
+            "Edzi": "src/"
+        }
+    },
+    "include-path": [
+	]
+}
