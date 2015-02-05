@@ -63,7 +63,7 @@ public class FeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
         cellFeedViewHolder.btnMore.setOnClickListener(this);
         cellFeedViewHolder.ivFeedCenter.setOnClickListener(this);
         cellFeedViewHolder.btnLike.setOnClickListener(this);
-        cellFeedViewHolder.ivUserProfile.setOnClickListener(this);
+
         return cellFeedViewHolder;
     }
 
@@ -299,8 +299,6 @@ public class FeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
         ImageView ivLike;
         @InjectView(R.id.tsLikesCounter)
         TextSwitcher tsLikesCounter;
-        @InjectView(R.id.ivUserProfile)
-        ImageView ivUserProfile;
 
         public CellFeedViewHolder(View view) {
             super(view);

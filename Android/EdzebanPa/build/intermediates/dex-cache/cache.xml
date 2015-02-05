@@ -2,6 +2,13 @@
 <items version="2" >
 
     <item
+        jar="/home/gidis/AndroidStudioProjects/MESTHackathon/Android/EdzebanPa/app/libs/volley.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="d4aaa36e04ee71a83444f8367c97a46fda662d2c">
+        <dex dex="/home/gidis/AndroidStudioProjects/MESTHackathon/Android/EdzebanPa/app/build/intermediates/pre-dexed/debug/volley-12b112816ef167236b7497a8c4d0559bccd065ca.jar" />
+    </item>
+    <item
         jar="/home/gidis/AndroidStudioProjects/MESTHackathon/Android/EdzebanPa/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/libs/internal_impl-21.0.3.jar"
         jumboMode="false"
         revision="21.1.2"

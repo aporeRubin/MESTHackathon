@@ -16,9 +16,7 @@ import android.view.animation.OvershootInterpolator;
 import com.edzenpa.app.util.Utils;
 
 
-/**
- * Created by froger_mcs on 16.12.14.
- */
+
 public class FeedContextMenuManager extends RecyclerView.OnScrollListener implements View.OnAttachStateChangeListener {
 
     private static FeedContextMenuManager instance;
