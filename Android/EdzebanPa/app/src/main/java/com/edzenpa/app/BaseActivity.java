@@ -88,8 +88,8 @@ public class BaseActivity extends ActionBarActivity implements GlobalMenuView.On
                 int[] startingLocation = new int[2];
                 v.getLocationOnScreen(startingLocation);
                 startingLocation[0] += v.getWidth() / 2;
-                UserProfileActivity.startUserProfileFromLocation(startingLocation, BaseActivity.this);
-                overridePendingTransition(0, 0);
+             //   UserProfileActivity.startUserProfileFromLocation(startingLocation, BaseActivity.this);
+               // overridePendingTransition(0, 0);
             }
         }, 200);
     }

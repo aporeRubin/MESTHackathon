@@ -2,25 +2,14 @@
 <resources>
 
     <string name="app_name">Edzeban Pa</string>
-    <string name="hello_world">Hello world!</string>
+
     <string name="action_settings">Settings</string>
     <plurals name="likes_count">
         <item quantity="one">%d like</item>
         <item quantity="other">%d likes</item>
     </plurals>
-    <string name="signup_error_message">Please make sure you enter a username, password, and email address!</string>
-    <string name="signup_error_title">Oops!</string>
-    <string name="login_error_message">Please make sure you enter a username and password!</string>
-    <string name="login_error_title">Oops!</string>
-    <string name="username_hint">Username</string>
-    <string name="password_hint">Password</string>
-    <string name="login_button_label">Login</string>
-    <string name="sign_up_text"><u>Sign Up!</u></string>
-    <string name="title_activity_sign_up">SignUpActivity</string>
-    <string name="email_hint">Email</string>
-    <string name="sign_up_button_label">Sign Up</string>
-    <string name="empty_inbox_label">No new messages!</string>
-    <string name="facebook_sign_up_btn">Sign Up With Facebook</string>
+
+
     <string-array name="user_photos">
         <item>http://scontent-a-fra.cdninstagram.com/hphotos-xpf1/t51.2885-15/s306x306/e15/10665483_429615813855717_1490926670_n.jpg</item>
         <item>http://scontent-b-fra.cdninstagram.com/hphotos-xaf1/t51.2885-15/s306x306/e15/10891026_694434897342602_1094773634_n.jpg</item>
