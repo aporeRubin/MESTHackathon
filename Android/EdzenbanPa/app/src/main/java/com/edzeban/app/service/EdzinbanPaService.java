@@ -1,5 +1,6 @@
 package com.edzeban.app.service;
 
+import com.edzeban.app.Meal;
 import com.google.gson.JsonObject;
 
 import java.util.List;
@@ -38,7 +39,8 @@ public interface EdzinbanPaService {
             @Header("X-EDZI-LOOSING_WEIGHT") String weight,
             @Header("X-EDZI-RECUPERATING") String recup,
             @Header("X-EDZI-LACTOSE_INTOLERANT") String lactose,
-            @Header("X-EDZI-ACTIVITY_LEVEL") String activity
+            @Header("X-EDZI-ACTIVITY_LEVEL") String activity,
+            Callback<List<Meal>> meals
             );
 
     /*//auth

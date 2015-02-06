@@ -12,18 +12,20 @@ import retrofit.client.OkClient;
  * Created by rubin on 2/6/15.
  */
 public class EdzinbanPa extends Application {
-    public static EdzinbanPaService edzinbanPa;
+    public EdzinbanPaService edzinbanPaService;
+    public static EdzinbanPa edzinbanPa ;
     @Override
     public void onCreate() {
 
         super.onCreate();
 
+        edzinbanPa = this;
         RestAdapter restAdapter = new RestAdapter.Builder()
                 .setEndpoint(EdzinbanPaService.api)
                 .setLogLevel(RestAdapter.LogLevel.FULL)
                 .setClient(new OkClient(new OkHttpClient()))
                 .build();
-        edzinbanPa = restAdapter.create(EdzinbanPaService.class);
+        edzinbanPaService = restAdapter.create(EdzinbanPaService.class);
     }
 
 }
