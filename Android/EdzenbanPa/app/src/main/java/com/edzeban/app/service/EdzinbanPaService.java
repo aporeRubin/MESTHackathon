@@ -39,13 +39,13 @@ public interface EdzinbanPaService {
 
     @GET("/search.json")
     void doSearch(
-            @Header("X-EDZI-MEAL_TYPE") String mealType,
+            @Header("X-EDZI-MEAL-TYPE") String mealType,
             @Header("X-EDZI-DIABETIC") String diabetic,
             @Header("X-EDZI-HYPERTENSIVE") String hypertensive,
-            @Header("X-EDZI-LOOSING_WEIGHT") String weight,
+            @Header("X-EDZI-LOOSING-WEIGHT") String weight,
             @Header("X-EDZI-RECUPERATING") String recup,
-            @Header("X-EDZI-LACTOSE_INTOLERANT") String lactose,
-            @Header("X-EDZI-ACTIVITY_LEVEL") String activity,
+            @Header("X-EDZI-LACTOSE-INTOLERANT") String lactose,
+            @Header("X-EDZI-ACTIVITY-LEVEL") String activity,
             @Query("query") String query,
             Callback<List<Meal>> meals
     );
