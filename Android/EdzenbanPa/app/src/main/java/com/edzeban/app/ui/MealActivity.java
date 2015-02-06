@@ -2,11 +2,10 @@ package com.edzeban.app.ui;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.view.LayoutInflater;
+import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.edzeban.app.EdzinbanPaApp;
@@ -24,38 +23,51 @@ import retrofit.client.Response;
 public class MealActivity extends ActionBarActivity {
 
     private int mMealID;
-    private View mLoadingProgress1;
-    private TextView mErrorText1;
-    private View mFeedback1;
+    private View mFeedback;
+    private View mLoadingProgress;
+    private TextView mErrorText;
+    private Button mRetryButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meal);
-        mLoadingProgress1 = findViewById(R.id.loading_progress);
-        mErrorText1 = (TextView) findViewById(R.id.error_message);
-        mFeedback1 = findViewById(R.id.feedback_view);
+
+        mFeedback = findViewById(R.id.feedback_view);
+        mLoadingProgress = findViewById(R.id.loading_progress);
+        mErrorText = (TextView) findViewById(R.id.error_message);
+
+        mRetryButton = (Button) findViewById(R.id.retry_button);
+        mRetryButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadMeal();
+            }
+        });
+
 
 
 
         mMealID = getIntent().getIntExtra("id", -1);
-        loadMealDetails();
+        loadMeal();
     }
 
 
-    protected  void loadMealDetails(){
+    protected  void loadMeal(){
         EdzinbanPaApp.edzinbanPa.edzinbanPaService.getMeal(mMealID, new Callback<Meal>() {
 
             @Override
             public void success(Meal meal, Response response) {
-                mFeedback1.setVisibility(View.VISIBLE);
-                mLoadingProgress1.setVisibility(View.VISIBLE);
-                mErrorText1.setVisibility(View.GONE);
 
+                Log.d("meals", meal.toString());
+                mLoadingProgress.setVisibility(View.GONE);
+                mRetryButton.setVisibility(View.GONE);
+                mFeedback.setVisibility(View.GONE);
 
                 getSupportActionBar().setTitle(meal.name);
+
                 TextView description=(TextView) findViewById(R.id.meal_description);
                 ImageView image = (ImageView) findViewById(R.id.meal_image);
-
 
                 description.setText(meal.description);
                 Picasso.with(MealActivity.this).load(meal.image_url).into(image);
@@ -63,9 +75,11 @@ public class MealActivity extends ActionBarActivity {
 
             @Override
             public void failure(RetrofitError error) {
-                mLoadingProgress1.setVisibility(View.GONE);
-                mErrorText1.setVisibility(View.VISIBLE);
-                mErrorText1.setText(error.getMessage());
+                mFeedback.setVisibility(View.VISIBLE);
+                mLoadingProgress.setVisibility(View.GONE);
+                mRetryButton.setVisibility(View.VISIBLE);
+                mErrorText.setVisibility(View.VISIBLE);
+                mErrorText.setText(error.getMessage());
             }
         });
     }

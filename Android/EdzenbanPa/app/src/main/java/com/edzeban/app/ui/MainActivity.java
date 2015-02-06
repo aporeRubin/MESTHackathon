@@ -45,6 +45,7 @@ public class MainActivity extends ActionBarActivity {
     private View mLoadingProgress;
     private TextView mErrorText;
     private String mCurrentMealType = "breakfast";
+    private Button mRetryButton;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -57,8 +58,8 @@ public class MainActivity extends ActionBarActivity {
         mLoadingProgress = findViewById(R.id.loading_progress);
         mErrorText = (TextView) findViewById(R.id.error_message);
 
-        Button retryButton = (Button) findViewById(R.id.retry_button);
-        retryButton.setOnClickListener(new View.OnClickListener() {
+        mRetryButton = (Button) findViewById(R.id.retry_button);
+        mRetryButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 loadMeals(mCurrentMealType);
@@ -133,6 +134,7 @@ public class MainActivity extends ActionBarActivity {
         mFeedback.setVisibility(View.VISIBLE);
         mLoadingProgress.setVisibility(View.VISIBLE);
         mErrorText.setVisibility(View.GONE);
+        mRetryButton.setVisibility(View.GONE);
 
         EdzinbanPaApp.edzinbanPa.edzinbanPaService.getMeals(meal_type, "", "", "", "", "", "",
                 new Callback<List<Meal>>() {
@@ -140,14 +142,13 @@ public class MainActivity extends ActionBarActivity {
                     public void success(List<Meal> meals, Response response) {
                         Log.d("meals", meals.toString());
                         mLoadingProgress.setVisibility(View.GONE);
+                        mRetryButton.setVisibility(View.GONE);
 
                         if(meals.size() == 0) {
                             mErrorText.setVisibility(View.VISIBLE);
                             mErrorText.setText(getString(R.string.no_items));
                         }
                         else {
-                            mFeedback.setVisibility(View.GONE);
-
                             mFeedback.setVisibility(View.GONE);
                         }
 
@@ -157,7 +158,9 @@ public class MainActivity extends ActionBarActivity {
 
                     @Override
                     public void failure(RetrofitError error) {
+                        mFeedback.setVisibility(View.VISIBLE);
                         mLoadingProgress.setVisibility(View.GONE);
+                        mRetryButton.setVisibility(View.VISIBLE);
                         mErrorText.setVisibility(View.VISIBLE);
                         mErrorText.setText(error.getMessage());
                     }
