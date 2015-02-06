@@ -8,6 +8,7 @@ import java.util.Map;
 import retrofit.Callback;
 import retrofit.http.Body;
 import retrofit.http.GET;
+import retrofit.http.Header;
 import retrofit.http.POST;
 import retrofit.http.Path;
 import retrofit.http.Query;
@@ -17,12 +18,9 @@ import retrofit.http.QueryMap;
  * Created by rubin on 2/6/15.
  */
 public interface EdzinbanPaService {
-    static final String domain = "http://10.0.2.2";
-    static final int port = 9000 ;
-    /*static final String api  = "http://10.0.2.2:9000";
-    */
-    /*static final String domain = "http://www.alsendo.com";
-    static final int port = 4002 ;*/
+    static final String domain = "https://edzibanpa.herokuapp.com/api";
+    static final int port = 80 ;
+
     static final String api  = domain + ":" + port ;
 
     //static final String asset_path = "/assets/images/" ;
@@ -31,6 +29,17 @@ public interface EdzinbanPaService {
     static final String randomImage = "" ;
     static final String s3Base = "";
     //static final String api  = "http://www.google.com";
+
+    @GET("/meals.json")
+    void getMeals(
+            @Header("X-EDZI-MEAL_TYPE") String mealType,
+            @Header("X-EDZI-DIABETIC") String diabetic,
+            @Header("X-EDZI-HYPERTENSIVE") String hypertensive,
+            @Header("X-EDZI-LOOSING_WEIGHT") String weight,
+            @Header("X-EDZI-RECUPERATING") String recup,
+            @Header("X-EDZI-LACTOSE_INTOLERANT") String lactose,
+            @Header("X-EDZI-ACTIVITY_LEVEL") String activity
+            );
 
     /*//auth
     @POST("/auth/local")
