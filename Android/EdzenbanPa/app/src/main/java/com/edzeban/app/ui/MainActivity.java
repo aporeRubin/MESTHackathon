@@ -83,7 +83,14 @@ public class MainActivity extends ActionBarActivity {
             mCurrentMealType = "supper";
         }
 
-        SpinnerAdapter spinner = ArrayAdapter.createFromResource(this, R.array.meal_types,android.R.layout.simple_spinner_dropdown_item);
+//        ArrayAdapter<String> spinner  = new ArrayAdapter<String>(
+//                getSupportActionBar().getThemedContext(),
+//                R.layout.actionbar_spinner,
+//                android.R.id.text1, getResources().getStringArray(R.array.meal_types));
+//        spinner .setDropDownViewResource(R.layout.actionbar_spinner_dropdown);
+//        actionBar.setListNavigationCallbacks(adapter, null);
+
+        SpinnerAdapter spinner = ArrayAdapter.createFromResource(this, R.array.meal_types, R.layout.actionbar_spinner_dropdown);
         getSupportActionBar().setListNavigationCallbacks(spinner, new ActionBar.OnNavigationListener() {
             public boolean mSpinnerLoaded;
 
