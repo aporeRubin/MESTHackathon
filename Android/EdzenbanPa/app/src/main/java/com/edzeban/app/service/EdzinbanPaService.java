@@ -35,7 +35,13 @@ public interface EdzinbanPaService {
             @Header("X-EDZI-LACTOSE-INTOLERANT") String lactose,
             @Header("X-EDZI-ACTIVITY-LEVEL") String activity,
             Callback<List<Meal>> meals
-            );
+    );
+
+    @GET("/meal/:id.json")
+    void getMeal(
+            @Query("id") int id,
+            Callback<Meal> meal
+    );
 
     @GET("/search.json")
     void doSearch(
