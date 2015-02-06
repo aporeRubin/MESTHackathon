@@ -1,6 +1,7 @@
 package com.edzeban.app.ui;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -22,6 +23,7 @@ import android.widget.Toast;
 import com.edzeban.app.EdzinbanPaApp;
 import com.edzeban.app.R;
 import com.edzeban.app.model.Meal;
+import com.edzeban.app.util.ProgressHUB;
 import com.squareup.picasso.Picasso;
 
 import org.w3c.dom.Text;
@@ -36,12 +38,11 @@ import retrofit.client.Response;
 
 
 public class MainActivity extends ActionBarActivity {
-
-
+    private static String TAG = "MainActivity" ;
     private ListView mListView;
     private MealAdapter mMealAdapter;
     private View mFeedback;
-    private View mLoadingProgress;
+    private ProgressHUB mLoadingProgress;
     private TextView mErrorText;
     private String mCurrentMealType = "breakfast";
 
@@ -53,7 +54,7 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
         mListView = (ListView) findViewById(R.id.meal_list);
         mFeedback = findViewById(R.id.feedback_view);
-        mLoadingProgress = findViewById(R.id.loading_progress);
+        //mLoadingProgress = findViewById(R.id.loading_progress);
         mErrorText = (TextView) findViewById(R.id.error_message);
 
         Button retryButton = (Button) findViewById(R.id.retry_button);
@@ -119,14 +120,18 @@ public class MainActivity extends ActionBarActivity {
         mCurrentMealType = meal_type;
 
         mFeedback.setVisibility(View.VISIBLE);
-        mLoadingProgress.setVisibility(View.VISIBLE);
-
+        mLoadingProgress = ProgressHUB.show(this, "loading . . .", true, false, new DialogInterface.OnCancelListener() {
+            @Override
+            public void onCancel(DialogInterface dialog) {
+                Log.e(TAG, "the progress cancelled");
+            }
+        });
         EdzinbanPaApp.edzinbanPa.edzinbanPaService.getMeals(meal_type, "", "", "", "", "", "",
                 new Callback<List<Meal>>() {
                     @Override
                     public void success(List<Meal> meals, Response response) {
                         Log.d("meals", meals.toString());
-                        mLoadingProgress.setVisibility(View.GONE);
+                        mLoadingProgress.hide();
 
                         if(meals.size() == 0) {
                             mErrorText.setVisibility(View.VISIBLE);
@@ -144,7 +149,7 @@ public class MainActivity extends ActionBarActivity {
 
                     @Override
                     public void failure(RetrofitError error) {
-                        mLoadingProgress.setVisibility(View.GONE);
+                        mLoadingProgress.hide();
                         mErrorText.setVisibility(View.VISIBLE);
                         mErrorText.setText(error.getMessage());
                     }
