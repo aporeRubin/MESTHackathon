@@ -1,0 +1,193 @@
+{% extends "_layout.twig" %}
+
+{% block content %}
+<form method="post">
+	
+	<table>
+		<tr>
+			<td>Name</td>
+			<td><input type="text" name="name" value="{{meal.name}}" required/></td>
+		</tr>
+		<tr>
+			<td>Description</td>
+			<td><textarea name="description" cols="50" rows="10" required>{{meal.description}}</textarea></td>
+		</tr>
+		<tr>
+			<td>General Rating</td>
+			<td><input type="number" name="general_rating" step="1" max="10" min="1" value="{{meal.general_rating}}" required/></td>
+		</tr>
+		<tr>
+			<td>Diabetic Rating</td>
+			<td><input type="number" name="diabetic_rating" step="1" max="10" min="1" value="{{meal.diabetic_rating}}" required/></td>
+		</tr>
+		<tr>
+			<td>Hypertensive Rating</td>
+			<td><input type="number" name="hypertensive_rating" step="1" max="10" min="1" value="{{meal.hypertensive_rating}}" required/></td>
+		</tr>
+		<tr>
+			<td>Weightloss Rating</td>
+			<td><input type="number" name="weightloss_rating" step="1" max="10" min="1" value="{{meal.weightloss_rating}}" required/></td>
+		</tr>
+		<tr>
+			<td>Recuperation Rating</td>
+			<td><input type="number" name="recuperation_rating" step="1" max="10" min="1" value="{{meal.recuperation_rating}}" required/></td>
+		</tr>
+		<tr>
+			<td>Fibre Rating</td>
+			<td><input type="number" name="fibre_rating" step="1" max="10" min="1" value="{{meal.fibre_rating}}" required/></td>
+		</tr>
+		<tr>
+			<td>Contains Lactose?</td>
+			<td>
+				<select name="contains_lactose">
+					<option value="0">No</option>
+					<option value="1" {% if meal.contains_lactose == '1' %}selected{% endif %}>Yes</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td>Portion Type</td>
+			<td>
+				<select name="portion_type">
+					<option value="cup" {% if meal.portion_type == 'cup' %}selected{% endif %}>Cup</option>
+					<option value="fist" {% if meal.portion_type == 'fist' %}selected{% endif %}>Fist</option>
+					<option value="ladle" {% if meal.portion_type == 'ladle' %}selected{% endif %}>Ladle</option>
+					<option value="spoon" {% if meal.portion_type == 'spoon' %}selected{% endif %}>Spoonful</option>
+					<option value="slice" {% if meal.portion_type == 'slice' %}selected{% endif %}>Slice</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td>Calories per portion</td>
+			<td><input type="number" name="calories_per_portion" step="1" min="1" value="{{meal.calories_per_portion}}" required/></td>
+		</tr>
+		<tr>
+			<td>Is Breakfast</td>
+			<td>
+				<select name="is_breakfast">
+					<option value="0">No</option>
+					<option value="1" {% if meal.is_breakfast == '1' %}selected{% endif %}>Yes</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td>Is Lunch</td>
+			<td>
+				<select name="is_lunch">
+					<option value="0">No</option>
+					<option value="1" {% if meal.is_lunch == '1' %}selected{% endif %}>Yes</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td>Is Supper</td>
+			<td>
+				<select name="is_supper">
+					<option value="0">No</option>
+					<option value="1" {% if meal.is_super == '1' %}selected{% endif %}>Yes</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td>Is Snack</td>
+			<td>
+				<select name="is_snack">
+					<option value="0">No</option>
+					<option value="1" {% if meal.is_snack == '1' %}selected{% endif %}>Yes</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td>Food Group</td>
+			<td>
+				<select name="food_group">
+					<option value="energy_giving" {% if meal.is_breakfast == '1' %}selected{% endif %}>Energy Giving</option>
+					<option value="body_building" {% if meal.is_breakfast == '1' %}selected{% endif %}>Body Building</option>
+					<option value="protective" {% if meal.is_breakfast == '1' %}selected{% endif %}>Protective</option>
+				</select>
+			</td>
+		</tr>
+	</table>
+	
+	
+	<br />
+	<input type="submit" value="Save" />
+	
+	<input type="hidden" name="{{csrf_key}}" value="{{csrf_token}}">
+</form>
+
+
+<br />
+<br />
+<hr />
+<br />
+{% if meal.id %}
+
+<form method="post" action="/meal_images" enctype="multipart/form-data">
+	<fieldset>
+		<legend>Add Image</legend>
+		<input name="image" type="file" /> 
+		<input type="submit" value="Add" />
+		<input type="hidden" name="{{csrf_key}}" value="{{csrf_token}}">
+		<input type="hidden" name="_METHOD" value="PUT">
+		<input type="hidden" name="meal_item_id" value="{{meal.id}}" /> 
+	</fieldset>
+</form>
+
+<table>
+	<caption>Images</caption>
+	{% for image in meal.images %}
+	<tr>
+		<td><img src="{{assets}}images/{{image.name}}" style="width:100px" /></td>
+		<td>{{image.name}}</td>
+		<td>
+			<form method="post" action="/meal_images/{{image.id}}">
+				<input type="hidden" name="{{csrf_key}}" value="{{csrf_token}}">	
+				<input type="hidden" name="_METHOD" value="DELETE">
+				<input type="submit" value="Delete" />
+			</form>
+		</td>
+	</tr>
+	{% endfor %}
+</table>
+
+<br />
+<hr />
+<br />
+
+<form method="post" action="/related_meals" enctype="multipart/form-data">
+	<fieldset>
+		<legend>Add Related Meal</legend>
+		<select name="meal_item_id2">
+			<option value=""></option>
+			{% for rmeal in other_meals %}
+				<option value="{{rmeal.id}}">{{rmeal.name}}</option>
+			{% endfor %}
+		</select>
+		<input type="submit" value="Add" />
+		<input type="hidden" name="{{csrf_key}}" value="{{csrf_token}}">
+		<input type="hidden" name="_METHOD" value="PUT">
+		<input type="hidden" name="meal_item_id" value="{{meal.id}}" /> 
+	</fieldset>
+</form>
+
+<table>
+	<caption>Related Meals</caption>
+	{% for rmeal in related_meals %}
+	<tr>
+		<td>{{rmeal.name}}</td>
+		<td>
+			<form method="post" action="/related_meals">
+				<input type="hidden" name="meal_item_id" value="{{meal.id}}">	
+				<input type="hidden" name="meal_item_id2" value="{{rmeal.id}}">	
+				<input type="hidden" name="{{csrf_key}}" value="{{csrf_token}}">	
+				<input type="hidden" name="_METHOD" value="DELETE">
+				<input type="submit" value="Delete" />
+			</form>
+		</td>
+	</tr>
+	{% endfor %}
+</table>
+{% endif %}
+
+{% endblock %}

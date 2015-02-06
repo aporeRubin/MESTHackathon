@@ -1,0 +1,41 @@
+<br />
+
+<table>
+	<tr>
+		<td><a href="/meal_items">View Meals</a> | </td>
+		<td><a href="/add_meal">Add Meal</a> | </td>
+		<td><a href="/run_script">Run Script</a></td> 
+	</tr>
+<table>
+
+<hr />
+<br />
+
+{% for type, message in flash.getMessages() %}
+	{% if type == 'error' %}
+	<div class="alert alert-block alert-danger fade in">
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+		<h4>Oh snap! An error occurred!</h4>
+		<p>{{ message }}</p>
+	</div>
+	{% endif %}
+	
+	{% if type == 'success' %}
+	<div class="alert alert-block alert-success fade in">
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+		<h4>Awesome!</h4>
+		<p>{{ message }}</p>
+	</div>
+	{% endif %}
+	
+	{% if type == 'info' %}
+	<div class="alert alert-block alert-info fade in">
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+		<h4>Pssst!</h4>
+		<p>{{ message }}</p>
+	</div>
+	{% endif %}
+{% endfor %}
+
+
+{% block content %}{% endblock %}

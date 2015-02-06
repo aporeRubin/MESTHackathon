@@ -1,3 +1,7 @@
 *.local.php
 vendor/*
-*.log
+cache/*
+*.log
+*.png
+*.jpg
+*.jpeg
