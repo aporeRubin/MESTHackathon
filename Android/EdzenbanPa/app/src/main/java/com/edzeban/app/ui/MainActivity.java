@@ -42,8 +42,8 @@ public class MainActivity extends ActionBarActivity {
     private ListView mListView;
     private MealAdapter mMealAdapter;
     private View mFeedback;
-    private View mLoadingProgress1;
-    private TextView mErrorText1;
+    private View mLoadingProgress;
+    private TextView mErrorText;
     private String mCurrentMealType = "breakfast";
 
     @Override
@@ -54,8 +54,8 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
         mListView = (ListView) findViewById(R.id.meal_list);
         mFeedback = findViewById(R.id.feedback_view);
-        mLoadingProgress1 = findViewById(R.id.loading_progress);
-        mErrorText1 = (TextView) findViewById(R.id.error_message);
+        mLoadingProgress = findViewById(R.id.loading_progress);
+        mErrorText = (TextView) findViewById(R.id.error_message);
 
         Button retryButton = (Button) findViewById(R.id.retry_button);
         retryButton.setOnClickListener(new View.OnClickListener() {
@@ -124,19 +124,19 @@ public class MainActivity extends ActionBarActivity {
         mCurrentMealType = meal_type;
 
         mFeedback.setVisibility(View.VISIBLE);
-        mLoadingProgress1.setVisibility(View.VISIBLE);
-        mErrorText1.setVisibility(View.GONE);
+        mLoadingProgress.setVisibility(View.VISIBLE);
+        mErrorText.setVisibility(View.GONE);
 
         EdzinbanPaApp.edzinbanPa.edzinbanPaService.getMeals(meal_type, "", "", "", "", "", "",
                 new Callback<List<Meal>>() {
                     @Override
                     public void success(List<Meal> meals, Response response) {
                         Log.d("meals", meals.toString());
-                        mLoadingProgress1.setVisibility(View.GONE);
+                        mLoadingProgress.setVisibility(View.GONE);
 
                         if(meals.size() == 0) {
-                            mErrorText1.setVisibility(View.VISIBLE);
-                            mErrorText1.setText(getString(R.string.no_items));
+                            mErrorText.setVisibility(View.VISIBLE);
+                            mErrorText.setText(getString(R.string.no_items));
                         }
                         else {
                             mFeedback.setVisibility(View.GONE);
@@ -150,9 +150,9 @@ public class MainActivity extends ActionBarActivity {
 
                     @Override
                     public void failure(RetrofitError error) {
-                        mLoadingProgress1.setVisibility(View.GONE);
-                        mErrorText1.setVisibility(View.VISIBLE);
-                        mErrorText1.setText(error.getMessage());
+                        mLoadingProgress.setVisibility(View.GONE);
+                        mErrorText.setVisibility(View.VISIBLE);
+                        mErrorText.setText(error.getMessage());
                     }
                 });
     }

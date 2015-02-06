@@ -7,6 +7,7 @@ import java.util.List;
 import retrofit.Callback;
 import retrofit.http.GET;
 import retrofit.http.Header;
+import retrofit.http.Path;
 import retrofit.http.Query;
 
 /**
@@ -37,9 +38,9 @@ public interface EdzinbanPaService {
             Callback<List<Meal>> meals
     );
 
-    @GET("/meal/:id.json")
+    @GET("/meals/{id}.json")
     void getMeal(
-            @Query("id") int id,
+            @Path("id") int id,
             Callback<Meal> meal
     );
 
