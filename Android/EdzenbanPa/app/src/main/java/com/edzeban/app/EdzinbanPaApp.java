@@ -8,8 +8,6 @@ import com.edzeban.app.R;
 import com.edzeban.app.service.EdzinbanPaService;
 import com.squareup.okhttp.OkHttpClient;
 
-import de.keyboardsurfer.android.widget.crouton.Crouton;
-import de.keyboardsurfer.android.widget.crouton.Style;
 import retrofit.RestAdapter;
 import retrofit.client.OkClient;
 
