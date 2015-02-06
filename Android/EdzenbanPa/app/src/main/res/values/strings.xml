@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">EdzenbanPa</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="dialog_string">Edzeban Pa, by Da Teem</string>
+    <string name="title">Set Up Your Preferences</string>
+    <string name="choose">Set Up !</string>
+</resources>
