@@ -1,12 +1,15 @@
 package com.edzeban.app;
 
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.Log;
 
 
 import com.edzeban.app.fragment.AboutFragment;
 import com.edzeban.app.fragment.MainFragment;
+import com.edzeban.app.util.ProgressHUB;
 
 
 import it.neokree.googlenavigationdrawer.GAccount;
@@ -15,7 +18,7 @@ import it.neokree.googlenavigationdrawer.GSection;
 import it.neokree.googlenavigationdrawer.GoogleNavigationDrawer;
 
 public class MainActivity extends GoogleNavigationDrawer implements GAccountListener {
-
+    private static String TAG = "MainActivity" ;
     GAccount account;
     GSection settingsSection, aboutSection, homeSection;
 
@@ -31,6 +34,15 @@ public class MainActivity extends GoogleNavigationDrawer implements GAccountList
         this.addSection(homeSection);
       //  this.addBottomSection(settingsSection);
         this.addBottomSection(aboutSection);
+
+
+        ProgressHUB.show(this,"loading . . ", true, true, new DialogInterface.OnCancelListener() {
+            @Override
+            public void onCancel(DialogInterface dialog) {
+                Log.e(TAG, "Preogress cancelled");
+            }
+        });
+
     }
 
 

@@ -1,10 +1,15 @@
 package com.edzeban.app.controller;
 
+import android.app.Activity;
 import android.app.Application;
+import android.view.ViewGroup;
 
+import com.edzeban.app.R;
 import com.edzeban.app.service.EdzinbanPaService;
 import com.squareup.okhttp.OkHttpClient;
 
+import de.keyboardsurfer.android.widget.crouton.Crouton;
+import de.keyboardsurfer.android.widget.crouton.Style;
 import retrofit.RestAdapter;
 import retrofit.client.OkClient;
 
@@ -27,5 +32,7 @@ public class EdzinbanPa extends Application {
                 .build();
         edzinbanPaService = restAdapter.create(EdzinbanPaService.class);
     }
+
+
 
 }
