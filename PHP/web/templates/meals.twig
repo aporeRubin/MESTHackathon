@@ -1,0 +1,12 @@
+{% extends "_layout.twig" %}
+
+{% block content %}
+<table>
+	{% for meal in meals %}
+	<tr>
+		<td>{{meal.name}}</td>
+		<td><a href="/meal_items/{{meal.id}}">more</a></td>
+	</tr>
+	{% endfor %}
+</table>
+{% endblock %}

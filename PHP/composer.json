@@ -18,8 +18,9 @@
 		"filp/whoops": "1.1.*@dev",
 		"zeuxisoo/slim-whoops": "dev-master",
 		"vlucas/valitron": "dev-master",
-		"aws/aws-sdk-php": "2.*",
+		"aws/aws-sdk-php": "2.7.6",
 		"fabpot/goutte": "~2.0",
+		"mandrill/mandrill": "1.0.*",
 		"gilbitron/php-simplecache": "~1.4"
 	},
     "autoload": {
