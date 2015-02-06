@@ -1,10 +1,7 @@
 package com.edzeban.app;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.os.Bundle;
-
-import me.drakeet.materialdialog.MaterialDialog;
 
 /**
  * Created by gidis on 2/6/15.
