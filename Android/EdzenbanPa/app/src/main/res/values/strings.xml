@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">EdzinbanPa</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="dialog_string">Edziban Pa, by Da Teem</string>
+    <string name="title">Set Up Your Preferences</string>
+    <string name="choose">Set Up !</string>
+    <string name="checkbox_preference_recup">Recuperating</string>
+    <string name="checkbox_preference_diabetic">Diabetic</string>
+    <string name="checkbox_preference_hypertensive">Hypertensive</string>
+    <string name="title_checkbox_preference">Set Up !</string>
+    <string name="inline_preferences">Set Up Your Preferences</string>
+    <string name="retry">Retry</string>
+    <string name="no_items">Nothing found</string>
+</resources>

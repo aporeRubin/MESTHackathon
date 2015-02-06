@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="items">
+        <item>Diabetes</item>
+        <item>Diabetes</item>
+        <item>Diabetes</item>
+        <item>Diabetes</item>
+    </array>
+
+
+    <string-array name="meal_types">
+        <item>Breakfast</item>
+        <item>Lunch</item>
+        <item>Supper</item>
+        <item>Snack</item>
+    </string-array>
+</resources>
+
+
