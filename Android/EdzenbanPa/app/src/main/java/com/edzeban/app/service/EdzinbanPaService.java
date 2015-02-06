@@ -7,6 +7,7 @@ import java.util.List;
 import retrofit.Callback;
 import retrofit.http.GET;
 import retrofit.http.Header;
+import retrofit.http.Query;
 
 /**
  * Created by rubin on 2/6/15.
@@ -36,6 +37,18 @@ public interface EdzinbanPaService {
             Callback<List<Meal>> meals
             );
 
+    @GET("/search.json")
+    void doSearch(
+            @Header("X-EDZI-MEAL_TYPE") String mealType,
+            @Header("X-EDZI-DIABETIC") String diabetic,
+            @Header("X-EDZI-HYPERTENSIVE") String hypertensive,
+            @Header("X-EDZI-LOOSING_WEIGHT") String weight,
+            @Header("X-EDZI-RECUPERATING") String recup,
+            @Header("X-EDZI-LACTOSE_INTOLERANT") String lactose,
+            @Header("X-EDZI-ACTIVITY_LEVEL") String activity,
+            @Query("query") String query,
+            Callback<List<Meal>> meals
+    );
     /*//auth
     @POST("/auth/local")
     void login(@Body User user, Callback<JsonObject> cb);
