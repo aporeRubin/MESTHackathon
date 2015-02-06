@@ -28,4 +28,7 @@ dependencies {
    
     compile 'me.drakeet.materialdialog:library:1.2.2'
     compile 'com.etsy.android.grid:library:1.0.5'
+    compile 'com.squareup.okhttp:okhttp:2.2.0'
+    compile 'com.squareup.okhttp:okhttp-urlconnection:+'
+    compile 'com.squareup.retrofit:retrofit:1.8.0'
 }
