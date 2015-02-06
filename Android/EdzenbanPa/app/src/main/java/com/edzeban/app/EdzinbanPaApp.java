@@ -1,4 +1,4 @@
-package com.edzeban.app.controller;
+package com.edzeban.app;
 
 import android.app.Application;
 
@@ -11,9 +11,9 @@ import retrofit.client.OkClient;
 /**
  * Created by rubin on 2/6/15.
  */
-public class EdzinbanPa extends Application {
+public class EdzinbanPaApp extends Application {
     public EdzinbanPaService edzinbanPaService;
-    public static EdzinbanPa edzinbanPa ;
+    public static EdzinbanPaApp edzinbanPa ;
     @Override
     public void onCreate() {
 

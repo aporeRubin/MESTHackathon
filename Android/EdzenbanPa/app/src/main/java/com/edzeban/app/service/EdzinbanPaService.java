@@ -1,19 +1,12 @@
 package com.edzeban.app.service;
 
-import com.edzeban.app.Meal;
-import com.google.gson.JsonObject;
+import com.edzeban.app.model.Meal;
 
 import java.util.List;
-import java.util.Map;
 
 import retrofit.Callback;
-import retrofit.http.Body;
 import retrofit.http.GET;
 import retrofit.http.Header;
-import retrofit.http.POST;
-import retrofit.http.Path;
-import retrofit.http.Query;
-import retrofit.http.QueryMap;
 
 /**
  * Created by rubin on 2/6/15.
@@ -22,7 +15,7 @@ public interface EdzinbanPaService {
     static final String domain = "https://edzibanpa.herokuapp.com/api";
     static final int port = 80 ;
 
-    static final String api  = domain + ":" + port ;
+    static final String api  = domain;
 
     //static final String asset_path = "/assets/images/" ;
     static final String asset_path = "/assets/exempt/" ;

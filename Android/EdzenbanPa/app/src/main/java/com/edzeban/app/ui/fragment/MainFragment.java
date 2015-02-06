@@ -1,4 +1,4 @@
-package com.edzeban.app.fragment;
+package com.edzeban.app.ui.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -12,14 +12,18 @@ import com.edzeban.app.R;
 /**
  * Created by gidis on 2/6/15.
  */
-public class BreakFastFragment extends Fragment {
-    public BreakFastFragment(){
+public class MainFragment extends Fragment {
+    public MainFragment(){
 
     }
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View rootView= inflater.inflate(R.layout.fragment_breakfast,
+        View rootView= inflater.inflate(R.layout.fragment_main,
                 container, false);
+
+
         return rootView;
     }
 }

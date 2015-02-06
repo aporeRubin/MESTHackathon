@@ -1,13 +1,6 @@
-package com.edzeban.app;
-
-import com.edzeban.app.controller.EdzinbanPa;
-import com.google.gson.JsonObject;
+package com.edzeban.app.model;
 
 import java.util.ArrayList;
-
-import retrofit.Callback;
-import retrofit.RetrofitError;
-import retrofit.client.Response;
 
 /**
  * Created by rubin on 2/6/15.
