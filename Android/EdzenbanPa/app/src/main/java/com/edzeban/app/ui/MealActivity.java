@@ -33,6 +33,8 @@ public class MealActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meal);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         mFeedback = findViewById(R.id.feedback_view);
         mLoadingProgress = findViewById(R.id.loading_progress);
         mErrorText = (TextView) findViewById(R.id.error_message);
