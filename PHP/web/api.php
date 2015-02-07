@@ -4,7 +4,7 @@ use Illuminate\Database\Capsule\Manager as DB;
 use Edzi\Model as Model;
 
 
-function send_json($app, $data, $cache_control_secs = 0) {
+function send_json($app, $data, $cache_control_secs = 600) {
 	$app->response->headers->set('Content-Type', 'application/json');
 	$app->response->headers->set('Cache-Control', 'public, max-age=' . $cache_control_secs);
 	echo json_encode($data);
@@ -14,13 +14,13 @@ $app->get('/search.json', function() use ($app) {
 		
 	$query = $app->request->get('query');
 	
-	$meal_type = $app->request->headers('X-EDZI-MEAL-TYPE');
-	$is_diabetic = $app->request->headers('X-EDZI-DIABETIC');
-	$is_hypertensive = $app->request->headers('X-EDZI-HYPERTENSIVE');
-	$is_losing_weight = $app->request->headers('X-EDZI-LOSING-WEIGHT');
-	$is_recuperating = $app->request->headers('X-EDZI-RECUPERATING');
-	$is_lactose_intolerant = $app->request->headers('X-EDZI-LACTOSE-INTOLERANT');
-	$activity_level = $app->request->headers('X-EDZI-ACTIVITY-LEVEL');
+	$meal_type = $app->request->get('X-EDZI-MEAL-TYPE');
+	$is_diabetic = $app->request->get('X-EDZI-DIABETIC');
+	$is_hypertensive = $app->request->get('X-EDZI-HYPERTENSIVE');
+	$is_losing_weight = $app->request->get('X-EDZI-LOSING-WEIGHT');
+	$is_recuperating = $app->request->get('X-EDZI-RECUPERATING');
+	$is_lactose_intolerant = $app->request->get('X-EDZI-LACTOSE-INTOLERANT');
+	$activity_level = $app->request->get('X-EDZI-ACTIVITY-LEVEL');
 	
 	$meals = Model\MealItem::where('name', 'LIKE', "%{$query}%")->orderBy('general_rating', 'DESC');
 	
@@ -61,13 +61,13 @@ $app->get('/search.json', function() use ($app) {
 
 $app->get('/meals.json', function() use ($app) {
 		
-	$meal_type = $app->request->headers('X-EDZI-MEAL-TYPE');
-	$is_diabetic = $app->request->headers('X-EDZI-DIABETIC');
-	$is_hypertensive = $app->request->headers('X-EDZI-HYPERTENSIVE');
-	$is_losing_weight = $app->request->headers('X-EDZI-LOSING-WEIGHT');
-	$is_recuperating = $app->request->headers('X-EDZI-RECUPERATING');
-	$is_lactose_intolerant = $app->request->headers('X-EDZI-LACTOSE-INTOLERANT');
-	$activity_level = $app->request->headers('X-EDZI-ACTIVITY-LEVEL');
+	$meal_type = $app->request->get('X-EDZI-MEAL-TYPE');
+	$is_diabetic = $app->request->get('X-EDZI-DIABETIC');
+	$is_hypertensive = $app->request->get('X-EDZI-HYPERTENSIVE');
+	$is_losing_weight = $app->request->get('X-EDZI-LOSING-WEIGHT');
+	$is_recuperating = $app->request->get('X-EDZI-RECUPERATING');
+	$is_lactose_intolerant = $app->request->get('X-EDZI-LACTOSE-INTOLERANT');
+	$activity_level = $app->request->get('X-EDZI-ACTIVITY-LEVEL');
 	
 	$meals = Model\MealItem::orderBy('general_rating', 'DESC');
 
