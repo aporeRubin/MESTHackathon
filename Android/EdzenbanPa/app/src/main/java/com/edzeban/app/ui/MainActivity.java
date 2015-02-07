@@ -2,7 +2,9 @@ package com.edzeban.app.ui;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
@@ -23,6 +25,7 @@ import com.edzeban.app.EdzinbanPaApp;
 import com.edzeban.app.R;
 import com.edzeban.app.model.Meal;
 import com.edzeban.app.ui.fragment.NavigationDrawerFragment;
+import com.edzeban.app.util.Prefs;
 import com.squareup.picasso.Picasso;
 
 import java.util.Calendar;
@@ -99,12 +102,6 @@ public class MainActivity extends ActionBarActivity {
             mCurrentMealType = "supper";
         }
 
-//        ArrayAdapter<String> spinner  = new ArrayAdapter<String>(
-//                getSupportActionBar().getThemedContext(),
-//                R.layout.actionbar_spinner,
-//                android.R.id.text1, getResources().getStringArray(R.array.meal_types));
-//        spinner .setDropDownViewResource(R.layout.actionbar_spinner_dropdown);
-//        actionBar.setListNavigationCallbacks(adapter, null);
 
         SpinnerAdapter spinner = ArrayAdapter.createFromResource(this, R.array.meal_types, R.layout.actionbar_spinner_dropdown);
         getSupportActionBar().setListNavigationCallbacks(spinner, new ActionBar.OnNavigationListener() {
@@ -151,7 +148,9 @@ public class MainActivity extends ActionBarActivity {
         mErrorText.setVisibility(View.GONE);
         mRetryButton.setVisibility(View.GONE);
 
-        EdzinbanPaApp.edzinbanPa.edzinbanPaService.getMeals(meal_type, "", "", "", "", "", "",
+        Prefs prefs = new Prefs(this);
+
+        EdzinbanPaApp.edzinbanPa.edzinbanPaService.getMeals(meal_type, prefs.getDiabetic(),prefs.getHypertensive(), prefs.getLosingWeight(), prefs.getRecuperating(), prefs.getLactoseIntolerant(), prefs.getActivityLevel(),
                 new Callback<List<Meal>>() {
                     @Override
                     public void success(List<Meal> meals, Response response) {
@@ -209,6 +208,10 @@ public class MainActivity extends ActionBarActivity {
                     .setMessage(R.string.dialog_string);
 
             mMaterialDialog.show();
+            return true;
+        }
+        else if (id == R.id.action_refresh) {
+            loadMeals(mCurrentMealType);
             return true;
         }
 

@@ -27,4 +27,16 @@
     <string name="personal_profile">Personal Profile</string>
     <string name="activity_level">Activity Level</string>
     <string name="activity_level_summary">How active are you?</string>
+    <string name="label_general_rating">Overall Rating</string>
+    <string name="label_diabetic_rating">Diabetic Rating</string>
+    <string name="label_hypertensive_rating">Hypertensive Rating</string>
+    <string name="label_weightloss_rating">Weightloss Rating</string>
+    <string name="label_recuperation_rating">Recuperation Rating</string>
+    <string name="label_fibre_rating">Fibre Rating</string>
+    <string name="label_food_group">Food Group</string>
+    <string name="label_portion_type">Portion Type</string>
+    <string name="label_contains_lactose">Contains Lactose?</string>
+    <string name="label_calories_per_portion">Calories per Portion</string>
+    <string name="pref_lactose_intolerant_title">Lactose Intolerant?</string>
+    <string name="action_refresh">Refresh</string>
 </resources>

@@ -7,7 +7,7 @@ import java.util.ArrayList;
  */
 public class Meal {
     public int id,
-            general_rating,
+            general_rating,//
             diabetic_rating,
             hypertensive_rating,
             weightloss_rating,

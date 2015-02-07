@@ -21,6 +21,10 @@
             android:key="pref_recuperating"
             android:title="@string/pref_recuperating_title"
             android:summary="" />
+        <CheckBoxPreference
+            android:key="pref_lactose_intolerant"
+            android:title="@string/pref_lactose_intolerant_title"
+            android:summary="" />
 
     </PreferenceCategory>
 
