@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+        android:title="@string/health_profile">
+
+        <CheckBoxPreference
+            android:key="pref_diabetic"
+            android:title="@string/pref_diabetic_title"
+            android:summary="" />
+        <CheckBoxPreference
+            android:key="pref_hypertensive"
+            android:title="@string/pref_hypertensive_title"
+            android:summary="" />
+        <CheckBoxPreference
+            android:key="pref_losing_weight"
+            android:title="@string/pref_losing_weight_title"
+            android:summary="" />
+        <CheckBoxPreference
+            android:key="pref_recuperating"
+            android:title="@string/pref_recuperating_title"
+            android:summary="" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/personal_profile">
+        <ListPreference
+            android:key="pref_activity_level"
+            android:title="@string/activity_level"
+            android:summary="@string/activity_level_summary"
+            android:entries="@array/activity_level_keys"
+            android:entryValues="@array/activity_level_values"
+            android:dialogTitle="@string/activity_level" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

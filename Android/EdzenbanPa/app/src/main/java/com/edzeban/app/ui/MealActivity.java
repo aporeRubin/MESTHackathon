@@ -56,6 +56,12 @@ public class MealActivity extends ActionBarActivity {
 
 
     protected  void loadMeal(){
+
+        mFeedback.setVisibility(View.VISIBLE);
+        mLoadingProgress.setVisibility(View.VISIBLE);
+        mErrorText.setVisibility(View.GONE);
+        mRetryButton.setVisibility(View.GONE);
+
         EdzinbanPaApp.edzinbanPa.edzinbanPaService.getMeal(mMealID, new Callback<Meal>() {
 
             @Override

@@ -1,26 +1,30 @@
 <resources>
-    <string name="app_name">EdzinbanPa</string>
+    <string name="app_name">EdzibanPa</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-    <string name="dialog_string">Edziban Pa, by Da Teem</string>
+    <string name="dialog_string">EdzibanPa is an easy to use food application that helps the user to plan meals by providing info about nutritional content of Ghanaian dishes</string>
     <string name="title">Set Up Your Preferences</string>
     <string name="choose">Set Up !</string>
-    <string name="checkbox_preference_recup">Recuperating</string>
-    <string name="checkbox_preference_diabetic">Diabetic</string>
-    <string name="checkbox_preference_hypertensive">Hypertensive</string>
-    <string name="title_checkbox_preference">Set Up !</string>
-    <string name="inline_preferences">Set Up Your Preferences</string>
+    <string name="health_profile">Health Profile</string>
     <string name="retry">Retry</string>
     <string name="no_items">Nothing found</string>
-    <string name="title_activity_main_activity2">MainActivity2Activity</string>
 
-    <string name="title_section1">Section 1</string>
+    <string name="title_section1">About</string>
     <string name="title_section2">Section 2</string>
     <string name="title_section3">Section 3</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
-    <string name="action_example">Example action</string>
+    <string name="action_about">About</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="pref_diabetic_title">Diabetic?</string>
+    <string name="pref_hypertensive_title">Hypertensive?</string>
+    <string name="pref_losing_weight_title">Losing Weight?</string>
+    <string name="pref_recuperating_title">Recuperating?</string>
+    <string name="personal_profile">Personal Profile</string>
+    <string name="activity_level">Activity Level</string>
+    <string name="activity_level_summary">How active are you?</string>
 </resources>

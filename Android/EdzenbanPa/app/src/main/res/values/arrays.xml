@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <array name="items">
-        <item>Diabetes</item>
-        <item>Diabetes</item>
-        <item>Diabetes</item>
-        <item>Diabetes</item>
+    <array name="activity_level_keys">
+        <item>Sedentary</item>
+        <item>Moderate</item>
+        <item>Active</item>
+        <item>Athletic</item>
+    </array>
+    <array name="activity_level_values">
+        <item>sedentary</item>
+        <item>moderate</item>
+        <item>active</item>
+        <item>athletic</item>
     </array>
 
 

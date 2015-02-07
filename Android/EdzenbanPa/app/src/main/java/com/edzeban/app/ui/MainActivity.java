@@ -2,35 +2,33 @@ package com.edzeban.app.ui;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SpinnerAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.edzeban.app.EdzinbanPaApp;
 import com.edzeban.app.R;
 import com.edzeban.app.model.Meal;
+import com.edzeban.app.ui.fragment.NavigationDrawerFragment;
 import com.squareup.picasso.Picasso;
 
-import org.w3c.dom.Text;
-
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import me.drakeet.materialdialog.MaterialDialog;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
@@ -47,9 +45,14 @@ public class MainActivity extends ActionBarActivity {
     private String mCurrentMealType = "breakfast";
     private Button mRetryButton;
 
+
+    private NavigationDrawerFragment mNavigationDrawerFragment;
+    private CharSequence mTitle;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
 
         setContentView(R.layout.activity_main);
@@ -66,6 +69,18 @@ public class MainActivity extends ActionBarActivity {
             }
         });
 
+
+
+        mNavigationDrawerFragment = (NavigationDrawerFragment)
+                getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
+        mTitle = getTitle();
+
+
+
+        // Set up the drawer.
+        mNavigationDrawerFragment.setUp(
+                R.id.navigation_drawer,
+                (DrawerLayout) findViewById(R.id.drawer_layout));
 
         int meal_type = 0;
         Calendar c = Calendar.getInstance();
@@ -165,6 +180,45 @@ public class MainActivity extends ActionBarActivity {
                         mErrorText.setText(error.getMessage());
                     }
                 });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        if (!mNavigationDrawerFragment.isDrawerOpen()) {
+            // Only show items in the action bar relevant to this screen
+            // if the drawer is not showing. Otherwise, let the drawer
+            // decide what to show in the action bar.
+            getMenuInflater().inflate(R.menu.menu_main, menu);
+            restoreActionBar();
+            return true;
+        }
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_about) {
+            final MaterialDialog mMaterialDialog = new MaterialDialog(this)
+                    .setTitle("About")
+                    .setMessage(R.string.dialog_string);
+
+            mMaterialDialog.show();
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+    public void restoreActionBar() {
+        ActionBar actionBar = getSupportActionBar();
+        getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
+        actionBar.setDisplayShowTitleEnabled(false);
+        actionBar.setTitle(mTitle);
     }
 
     class MealAdapter extends ArrayAdapter<Meal> {
