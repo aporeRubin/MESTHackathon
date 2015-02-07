@@ -1,11 +1,14 @@
 package com.edzeban.app.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.edzeban.app.EdzinbanPaApp;
@@ -13,6 +16,8 @@ import com.edzeban.app.R;
 import com.edzeban.app.model.Meal;
 import com.edzeban.app.util.Inflector;
 import com.squareup.picasso.Picasso;
+
+import java.util.zip.Inflater;
 
 import retrofit.Callback;
 import retrofit.RetrofitError;
@@ -87,6 +92,7 @@ public class MealActivity extends ActionBarActivity {
                 TextView portion_type = (TextView) findViewById(R.id.portion_type);
                 TextView calories_per_portion = (TextView) findViewById(R.id.calories_per_portion);
                 TextView contains_lactose = (TextView) findViewById(R.id.contains_lactose);
+                LinearLayout related_meals = (LinearLayout) findViewById(R.id.related_meals);
 
                 Picasso.with(MealActivity.this).load(meal.image_url).into(image);
                 description.setText(meal.description);
@@ -100,6 +106,27 @@ public class MealActivity extends ActionBarActivity {
                 portion_type.setText(Character.toUpperCase(meal.portion_type.charAt(0)) + meal.portion_type.substring(1));
                 calories_per_portion.setText(String.valueOf(meal.calories_per_portion));
                 contains_lactose.setText(meal.contains_lactose.equals("1") ? "Yes" : "No");
+
+                LayoutInflater lf = LayoutInflater.from(MealActivity.this);
+                for(int i = 0; i < meal.related_meals.size(); i++) {
+                    final Meal rmeal = meal.related_meals.get(i);
+                    View view = lf.inflate(R.layout.view_relatedmealitem, null);
+
+                    ((TextView) view.findViewById(R.id.meal_name)).setText(rmeal.name);
+                    Picasso.with(MealActivity.this).load(rmeal.image_url).into((ImageView) view.findViewById(R.id.meal_image));
+
+                    view.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(MealActivity.this, MealActivity.class);
+                            intent.putExtra("id", rmeal.id);
+
+                            startActivity(intent);
+                        }
+                    });
+
+                    related_meals.addView(view);
+                }
             }
 
             @Override

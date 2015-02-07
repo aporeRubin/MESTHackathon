@@ -113,6 +113,19 @@ $app->get('/meals/:id.json', function($id) use ($app) {
 	if(!$meal)
 		$app->halt(404, 'Meal cannot be found');
 		
+	$rel1 = DB::table('related_meal_items')
+				->select('meal_two_id')
+				->where('meal_one_id', $id)
+				->lists('meal_two_id');
+	$rel2 = DB::table('related_meal_items')
+				->select('meal_one_id')
+				->where('meal_two_id', $id)
+				->lists('meal_one_id');
+	
+	$rel = array_merge($rel1, $rel2);
+	
+	$meal->related_meals = $rel ? Model\MealItem::whereIn('id', $rel)->get() : [];
+
     send_json($app, $meal);
 });
 

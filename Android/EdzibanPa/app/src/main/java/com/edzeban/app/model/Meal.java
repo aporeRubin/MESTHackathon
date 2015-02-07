@@ -26,10 +26,11 @@ public class Meal {
             is_supper,
             is_snack;
 
-    public ArrayList<ImageObject> imageObjects;
+    public ArrayList<Meal> related_meals;
+    public ArrayList<MealImage> images;
 
 
-    class ImageObject {
+    class MealImage {
         int id, meal_item_id;
         String name, url;
     }
